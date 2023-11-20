@@ -1,0 +1,15 @@
+.link_header:hover {
+    border-bottom: 1px solid rgba(102, 102, 102, 1);
+    transition: 0.4s;
+}
+.link_header {
+    color: rgba(102, 102, 102, 1);
+}
+
+.active {
+    background: -webkit-linear-gradient(0deg, rgba(0, 192, 253, 1) 21%, rgba(231, 15, 170, 1) 76%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
