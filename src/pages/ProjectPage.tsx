@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, {useMemo} from "react";
 import { theme } from "../view/theme";
 import { GitHubProjectIcon, LinkLogo } from "../icons";
 //@ts-ignore
@@ -15,6 +15,7 @@ import Project5 from "../avatar/Project5.png";
 //@ts-ignore
 import Project6 from "../avatar/Project6.png";
 import { Link } from "react-router-dom";
+import {useMyContext} from "../context";
 
 const projects = [
   {
@@ -85,7 +86,92 @@ const projects = [
   },
 ];
 
+const uaProjects = [
+  {
+    img: Project1,
+    title: "Проєкт \"Плитка\" тут",
+    subtitle:
+        "Це приклад опису проекту випадкові речі тут в описі Це приклад проекту генератор lorem ipsum для фіктивного контенту",
+    stack: "Технічний стек : HTML , JavaScript, SASS, React",
+    linkLogo: <LinkLogo />,
+    linkText: "Попередній перегляд в реальному часі",
+    gitLogo: <GitHubProjectIcon />,
+    gitText: "Переглянути код",
+  },
+  {
+    img: Project2,
+    title: "Проєкт \"Плитка\" тут",
+    subtitle:
+        "Це приклад опису проекту випадкові речі тут в описі Це приклад проекту генератор lorem ipsum для фіктивного контенту",
+    stack: "Технічний стек : HTML , JavaScript, SASS, React",
+    linkLogo: <LinkLogo />,
+    linkText: "Попередній перегляд в реальному часі",
+    gitLogo: <GitHubProjectIcon />,
+    gitText: "Переглянути код",
+  },
+  {
+    img: Project3,
+    title: "Проєкт \"Плитка\" тут",
+    subtitle:
+        "Це приклад опису проекту випадкові речі тут в описі Це приклад проекту генератор lorem ipsum для фіктивного контенту",
+    stack: "Технічний стек : HTML , JavaScript, SASS, React",
+    linkLogo: <LinkLogo />,
+    linkText: "Попередній перегляд в реальному часі",
+    gitLogo: <GitHubProjectIcon />,
+    gitText: "Переглянути код",
+  },
+  {
+    img: Project4,
+    title: "Проєкт \"Плитка\" тут",
+    subtitle:
+        "Це приклад опису проекту випадкові речі тут в описі Це приклад проекту генератор lorem ipsum для фіктивного контенту",
+    stack: "Технічний стек : HTML , JavaScript, SASS, React",
+    linkLogo: <LinkLogo />,
+    linkText: "Попередній перегляд в реальному часі",
+    gitLogo: <GitHubProjectIcon />,
+    gitText: "Переглянути код",
+  },
+  {
+    img: Project5,
+    title: "Проєкт \"Плитка\" тут",
+    subtitle:
+        "Це приклад опису проекту випадкові речі тут в описі Це приклад проекту генератор lorem ipsum для фіктивного контенту",
+    stack: "Технічний стек : HTML , JavaScript, SASS, React",
+    linkLogo: <LinkLogo />,
+    linkText: "Попередній перегляд в реальному часі",
+    gitLogo: <GitHubProjectIcon />,
+    gitText: "Переглянути код",
+  },
+  {
+    img: Project6,
+    title: "Проєкт \"Плитка\" тут",
+    subtitle:
+        "Це приклад опису проекту випадкові речі тут в описі Це приклад проекту генератор lorem ipsum для фіктивного контенту",
+    stack: "Технічний стек : HTML , JavaScript, SASS, React",
+    linkLogo: <LinkLogo />,
+    linkText: "Попередній перегляд в реальному часі",
+    gitLogo: <GitHubProjectIcon />,
+    gitText: "Переглянути код",
+  },
+];
+
 const ProjectPage = () => {
+  const { myValue } = useMyContext()
+  const title = useMemo(()=>{
+    if(myValue === "en"){
+      return "Projects"
+    }else return "Проекти"
+  },[myValue])
+  const subTitle = useMemo(()=>{
+    if(myValue === "en"){
+      return "Things I’ve built so far"
+    }else return "Те, що я побудував до цього часу"
+  },[myValue])
+  const projectMe = useMemo(()=> {
+    if(myValue === "en"){
+      return projects
+    }else return uaProjects
+  },[myValue])
   return (
     <Box
       sx={{
@@ -112,23 +198,21 @@ const ProjectPage = () => {
             color: theme.palette.colorChild,
           }}
         >
-          Projects
+          {title}
         </Typography>
         <Typography sx={{ fontSize: "20px", color: theme.palette.colorText }}>
-          Things I’ve built so far
+          {subTitle}
         </Typography>
         <Box
           sx={{
             width: "100%",
-
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-
             gridTemplateRows: "1fr 1fr 1fr",
             mt: theme.spacing(5),
           }}
         >
-          {projects.map((value, index) => (
+          {projectMe.map((value, index) => (
             <Box
               key={index}
               sx={{

@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, {useMemo} from "react";
 import { theme } from "../view/theme";
 import {
   GitHubBottomLogo,
@@ -8,8 +8,15 @@ import {
   LogoBottom,
 } from "../icons";
 import "./Pages.css";
+import {useMyContext} from "../context";
 
 const ContactPage = () => {
+    const { myValue } = useMyContext()
+    const title = useMemo(()=>{
+        if(myValue === "en"){
+            return "For any questions please mail us:"
+        }else return "Якщо у вас виникли запитання, будь ласка, напишіть мені:"
+    },[myValue])
   return (
     <Box
       sx={{
@@ -39,9 +46,9 @@ const ContactPage = () => {
           }}
         >
           <Typography
-            sx={{ fontSize: "58px", color: theme.palette.colorChild }}
+            sx={{ fontSize: "55px", color: theme.palette.colorChild }}
           >
-            For any questions please mail us:
+              {title}
           </Typography>
           <Typography
             className="name_head"

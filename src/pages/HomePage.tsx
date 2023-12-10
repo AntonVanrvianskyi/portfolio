@@ -4,11 +4,33 @@ import { theme } from "../view/theme";
 //@ts-ignore
 import avatar from "../avatar/avatar.png";
 import "./Pages.css";
+import {useMyContext} from "../context";
+const local = [
+    {
+        en: {
+            hi: "Hi 👋",
+            nameIs :"My name is",
+            name: "Pavan MG",
+            desc: "I build things for web"
 
+        },
+
+        ua: {
+            hi: "Привіт 👋",
+            nameIs :"Мене звати",
+            name: "Pavan MG",
+            desc: "Я створюю речі для інтернету"
+
+        }
+    }
+]
 const HomePage = () => {
   // const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
-  return (
+    const { myValue } = useMyContext()
+
+
+    return (
     <Box
       sx={{
         width: "100%",
@@ -40,10 +62,10 @@ const HomePage = () => {
             mb: "30px",
           }}
         >
-          Hi 👋,
+            {local[0][myValue].hi},
           <br />
-          My name is <span className="name_head">Pavan MG</span> I build things
-          for web
+            {local[0][myValue].nameIs} <span className="name_head">{local[0][myValue].name}</span>
+            {local[0][myValue].desc}
         </Typography>
 
         <img

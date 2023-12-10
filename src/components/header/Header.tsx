@@ -5,11 +5,12 @@ import { theme } from "../../view/theme";
 import { LogoIcon } from "../../icons";
 import "./Header.css";
 import MenuIcon from "@mui/icons-material/Menu";
-
 import { NavBar } from "../snippets";
+
 
 interface Props {
   onOpen: () => void;
+    setTrigger:(value:boolean)=> void;
 }
 
 const Header = ({ onOpen }: Props) => {
@@ -55,6 +56,7 @@ const Header = ({ onOpen }: Props) => {
           ) : (
             <NavBar />
           )}
+
         </Toolbar>
       </AppBar>
     </>

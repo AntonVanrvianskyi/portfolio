@@ -14,6 +14,7 @@ import {
 } from "../icons";
 
 import { theme } from "../view/theme";
+import {useMyContext} from "../context";
 const massStack = [
   {
     title: <HtmlLogo />,
@@ -46,8 +47,24 @@ const massStack = [
     title: <GithubLogo />,
   },
 ];
+const local = [
+  {
+    en: {
+      home: "My Tech Stack",
+      desc: "Technologies I’ve been working with recently"
 
+    },
+
+    ua: {
+      home: "Мій технічний стек",
+      desc: "Технології, з якими я працюю останнім часом"
+
+    }
+  }
+]
 const StackPage = () => {
+  const { myValue } = useMyContext()
+
   return (
     <Box
       sx={{
@@ -71,11 +88,11 @@ const StackPage = () => {
           <Typography
             sx={{ fontSize: "42px", color: theme.palette.colorChild }}
           >
-            My Tech Stack
+            {local[0][myValue].home}
           </Typography>
           <Typography sx={{ fontSize: "20px", color: theme.palette.colorText }}>
             {" "}
-            Technologies I’ve been working with recently
+            {local[0][myValue].desc}
           </Typography>
         </Box>
         <Box

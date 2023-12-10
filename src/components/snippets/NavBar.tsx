@@ -1,18 +1,42 @@
-import React from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import { theme } from "../../view/theme";
 import { GitLogo, LinkedinLogo, TwiterLogo } from "../../icons";
 import { NavLink } from "react-router-dom";
+import BasicSelect from "./Select";
+import {useMyContext} from "../../context";
+
 
 interface Props {
   onOpen?: () => void;
   sxProps?: Record<string, string | number>;
 }
 
+const local = [
+    {
+        en: {
+            home: "Home",
+            about: "About",
+            techStack: "Tech Stack",
+            projects: "Projects",
+            contacts: "Contact"
+        },
+
+        ua: {
+            home: "Головна",
+            about: "Про мене",
+            techStack: "Технології",
+            projects: "Проекти",
+            contacts: "Контакти"
+        }
+    }
+]
 const NavBar = ({ sxProps }: Props) => {
   const isDesktop = useMediaQuery(theme.breakpoints.between("lg", "xl"));
+    const { myValue } = useMyContext()
 
-  console.log(isDesktop, "sdgjsgdjk");
+
+
 
   return (
     <Box
@@ -35,7 +59,7 @@ const NavBar = ({ sxProps }: Props) => {
           //   color: theme.palette.colorText,
         }}
       >
-        Home
+          {local[0][myValue]?.home}
       </NavLink>
       <NavLink
         to="about"
@@ -48,7 +72,7 @@ const NavBar = ({ sxProps }: Props) => {
           height: "26px",
         }}
       >
-        About
+          {local[0][myValue]?.about}
       </NavLink>
       <NavLink
         to="stack"
@@ -61,7 +85,7 @@ const NavBar = ({ sxProps }: Props) => {
           height: "26px",
         }}
       >
-        Tech Stack
+          {local[0][myValue]?.techStack}
       </NavLink>
       <NavLink
         to="projects"
@@ -74,7 +98,7 @@ const NavBar = ({ sxProps }: Props) => {
           height: "26px",
         }}
       >
-        Projects
+          {local[0][myValue]?.projects}
       </NavLink>
       <NavLink
         to="contact"
@@ -87,7 +111,7 @@ const NavBar = ({ sxProps }: Props) => {
           height: "26px",
         }}
       >
-        Contact
+          {local[0][myValue]?.contacts}
       </NavLink>
       {sxProps ? null : (
         <Box
@@ -104,6 +128,7 @@ const NavBar = ({ sxProps }: Props) => {
           <LinkedinLogo />
         </Box>
       )}
+        <BasicSelect/>
     </Box>
   );
 };

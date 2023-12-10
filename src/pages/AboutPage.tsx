@@ -1,8 +1,8 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import { OfficeIcon, LocationIcon, CalendarIcon } from "../icons";
-import React, { useState } from "react";
-import { subscribe } from "diagnostics_channel";
+import React, {useMemo} from "react";
 import { theme } from "../view/theme";
+import {useMyContext} from "../context";
 
 const information = [
   {
@@ -90,8 +90,101 @@ const information = [
   },
 ];
 
+const uaInfo = [
+  {
+    title: "Про мене",
+    subtitile:
+        "Додаток Generator - це онлайн-інструмент, який допомагає експортувати готові шаблони, готові до роботи в якості вашого майбутнього веб-сайту. Він допомагає об'єднати слайди, панелі та інші компоненти і експортувати їх у вигляді набору статичних файлів: HTML/CSS/JS.",
+  },
+  {
+    title: "Досвід роботи",
+    subtitile: [
+      {
+        staf: "Молодший веб-розробник",
+        time: "Повна зайнятість",
+        details: [
+          {
+            icon: <OfficeIcon />,
+            subscribe: "Навчальний додаток доктора Раджкумара",
+          },
+          {
+            icon: <LocationIcon />,
+            subscribe: "Бенгалуру",
+          },
+          {
+            icon: <CalendarIcon />,
+            subscribe: "Вересень 2021 - Грудень 2021",
+          },
+        ],
+      },
+      {
+        staf: "Стажер з веб-розробки",
+        time: "Стажування",
+        details: [
+          {
+            icon: <OfficeIcon />,
+            subscribe: "Навчальний додаток доктора Раджкумара",
+          },
+          {
+            icon: <LocationIcon />,
+            subscribe: "Бенгалуру",
+          },
+          {
+            icon: <CalendarIcon />,
+            subscribe: "Вересень 2021 - Грудень 2021",
+          },
+        ],
+      },
+      {
+        staf: "SEO / SEM спеціаліст",
+        time: "Стажування",
+        details: [
+          {
+            icon: <OfficeIcon />,
+            subscribe: "Навчальний додаток доктора Раджкумара",
+          },
+          {
+            icon: <LocationIcon />,
+            subscribe: "Бенгалуру",
+          },
+          {
+            icon: <CalendarIcon />,
+            subscribe: "Вересень 2021 - Грудень 2021",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Освіта",
+    subtitile: [
+      {
+        staf: "Бакалавр з електроніки та зв'язку",
+        time: "Повна зайнятість",
+        details: [
+          {
+            icon: <OfficeIcon />,
+            subscribe: "Навчальний додаток доктора Раджкумара",
+          },
+          {
+            icon: <CalendarIcon />,
+            subscribe: "Вересень 2021 - Грудень 2021",
+          },
+        ],
+      },
+    ],
+  },
+];
 const AboutPage = () => {
-  const [] = useState()
+  const { myValue } = useMyContext()
+
+  const aboutMe = useMemo(()=> {
+    if(myValue === "en"){
+      return information
+    }
+    else return uaInfo
+  },[myValue])
+
   return (
     <Box
       sx={{
@@ -103,7 +196,7 @@ const AboutPage = () => {
       }}
     >
       <Box sx={{ width: "60%", height: "100%" }}>
-        {information.map((field, index) => (
+        {aboutMe.map((field, index) => (
           <Box key={index} sx={{ width: "100%" }}>
             <Typography
               sx={{
